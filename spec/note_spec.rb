@@ -1,20 +1,34 @@
 require 'note'
 
-describe Note do
-  it ' can create a note with title and body' do
-    Note.new('the', 'body')
+describe NotePad do
+  it 'can create a note with title and body' do
+    NotePad.new
   end
+  describe '#add_titles and #list it' do
+    it 'returns the title of note' do
+      notepad = NotePad.new
+      notepad.add('title', 'body')
+      expect(notepad.list).to eq "title"
+    end
 
-  describe "#list_titles" do
     it 'returns the title of notes' do
-      Note.new('A', 'body')
-      expect(Note.list_titles).to eq ['the', 'A']
+      notepad = NotePad.new
+      notepad.add('title', 'body')
+      notepad.add('title2', 'body')
+      expect(notepad.list).to eq "title\ntitle2"
     end
   end
 
-  describe "#pick_note" do
+  describe '#pick_note' do
     it 'pick a note and see its title and body' do
-      expect(Note.pick_note('the')).to eq ['the', 'body']
+      notepad = NotePad.new
+      notepad.add('title', 'body')
+      expect(notepad.pick_note('title')).to eq "title\nbody"
+    end
+    it 'pick a note and see its title and body' do
+      notepad = NotePad.new
+      notepad.add('title2', 'body2')
+      expect(notepad.pick_note('title2')).to eq "title2\nbody2"
     end
   end
 end

@@ -1,16 +1,19 @@
-# Note
-class Note
-  @@titles = {}
-  def initialize(title, body)
-    @@titles[title] = body
+# NotePad
+class NotePad
+  def initialize
+    @notes = {}
   end
 
-  def self.list_titles
-    @@titles.keys
+  def add(title, body)
+    @notes[title] = body
   end
 
-  def self.pick_note(title)
-    body = @@titles[title]
-    [title, body]
+  def list
+    @notes.keys.join("\n")
+  end
+
+  def pick_note(title)
+    body = @notes[title]
+    "#{title}\n#{body}"
   end
 end
